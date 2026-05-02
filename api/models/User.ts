@@ -35,17 +35,6 @@ const UserSchema = new mongoose.Schema<
     token: {
         type: String,
     },
-    displayName: {
-        type: String,
-        required: [true, 'Display name is required'],
-        trim: true,
-    },
-    googleID: String,
-    avatar: {
-        type: String,
-        required: [true, 'Avatar is required'],
-        default: null,
-    }
 });
 
 UserSchema.methods.checkPassword = function (password: string) {

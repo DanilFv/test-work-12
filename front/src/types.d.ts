@@ -1,9 +1,6 @@
 export interface IUserFields{
     _id: string;
     username: string;
-    displayName: string;
-    avatar: string | null;
-    googleID?: string;
     role: string;
 }
 

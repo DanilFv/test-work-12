@@ -52,16 +52,3 @@ export const logout = createAsyncThunk<void, void>('/users/logout',
     const response = await axiosAPI.delete<{ message: string }>('/users/session');
     toast.success(response.data.message);
 });
-
-export const googleLogin = createAsyncThunk<IUserFields, string, {rejectValue: GlobalError}>('users/googleLogin',
-    async (credential, {rejectWithValue}) => {
-    try {
-        const response = await axiosAPI.post<{user: IUserFields, message: string}>('/users/google', {credential});
-        return response.data.user;
-    } catch (e) {
-        if (isAxiosError(e) && e.response && e.response.status === 400) {
-            return rejectWithValue(e.response.data as GlobalError);
-        }
-        throw e;
-    }
-});

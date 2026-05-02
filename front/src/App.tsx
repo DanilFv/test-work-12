@@ -10,6 +10,7 @@ import ProtectedRouter
     from './components/UI/ProtectedRouter/ProtectedRouter.tsx';
 import {useAppSelector} from './app/hooks.ts';
 import {selectUser} from './features/Users/store/userSelectors.ts';
+import FullPlace from './features/Places/containers/FullPlace.tsx';
 
 const App = () => {
     const user = useAppSelector(selectUser);
@@ -26,6 +27,13 @@ const App = () => {
                   <Route path='/places/new' element={(
                       <ProtectedRouter isAllowed={!!user}>
                           <NewPlace />
+                      </ProtectedRouter>
+                      )}
+                  />
+
+                  <Route path='/places/:id' element={(
+                      <ProtectedRouter isAllowed={!!user}>
+                          <FullPlace />
                       </ProtectedRouter>
                       )}
                   />

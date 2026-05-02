@@ -54,13 +54,42 @@ placesRouter.get('/', async (req, res, next) => {
 placesRouter.get('/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
-        const place = await Place.findById(id);
+        const place = await Place.findById(id).lean();
 
         if (!place) {
             return res.status(404).send({ message: 'Place Not Found' });
         }
 
-        return res.send(place);
+        const reviews = await Review.find({ place: id }).populate('user', 'username');
+        const gallery = await PlaceImage.find({ place: id });
+        const count = reviews.length;
+
+        let ratings = {
+            overallRating: 0,
+            averageFood: 0,
+            averageService: 0,
+            averageInterior: 0,
+        };
+
+        if (count > 0) {
+            const avgFood = reviews.reduce((sum, r) => sum + r.ratingFood, 0) / count;
+            const avgService = reviews.reduce((sum, r) => sum + r.ratingService, 0) / count;
+            const avgInterior = reviews.reduce((sum, r) => sum + r.ratingInterior, 0) / count;
+
+            ratings = {
+                averageFood: Number(avgFood.toFixed(1)),
+                averageService: Number(avgService.toFixed(1)),
+                averageInterior: Number(avgInterior.toFixed(1)),
+                overallRating: Number(((avgFood + avgService + avgInterior) / 3).toFixed(1)),
+            };
+        }
+
+        return res.send({
+            ...place,
+            ...ratings,
+            reviews,
+            gallery,
+        });
     } catch (e) {
         next(e);
     }

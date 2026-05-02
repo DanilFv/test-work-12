@@ -1,6 +1,11 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axiosAPI from '../../../../axiosAPI.ts';
-import type {IPlace, PlaceMutation, ValidationError} from '../../../../types';
+import type {
+    IPlace,
+    IPlaceFull,
+    PlaceMutation,
+    ValidationError
+} from '../../../../types';
 import {isAxiosError} from 'axios';
 import {toast} from 'react-toastify';
 
@@ -10,9 +15,9 @@ export const fetchPlaces = createAsyncThunk<IPlace[], void>('places/fetchAll',
     return response.data || [];
 });
 
-export const fetchOnePlace = createAsyncThunk<IPlace, string>('places/fetchOnePlace',
+export const fetchOnePlace = createAsyncThunk<IPlaceFull, string>('places/fetchOnePlace',
     async (id) => {
-    const response = await axiosAPI.get<IPlace>(`/places/${id}`);
+    const response = await axiosAPI.get<IPlaceFull>(`/places/${id}`);
     return response.data;
 });
 

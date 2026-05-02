@@ -1,4 +1,4 @@
-import type {IPlace, ValidationError} from '../../../../types';
+import type {IPlace, IPlaceFull, ValidationError} from '../../../../types';
 import {createSlice} from '@reduxjs/toolkit';
 import {
     createPlace,
@@ -9,7 +9,7 @@ import {
 
 interface PlacesState {
     items: IPlace[];
-    onePlace: IPlace | null;
+    onePlace: IPlaceFull | null;
     fetchLoading: boolean;
     fetchOneLoading: boolean;
     createLoading: boolean;

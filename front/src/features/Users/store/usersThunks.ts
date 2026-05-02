@@ -11,27 +11,21 @@ import {isAxiosError} from 'axios';
 import axiosAPI from '../../../axiosAPI.ts';
 import {toast} from 'react-toastify';
 
-export const register = createAsyncThunk<IUserFields, RegisterMutation, { rejectValue: ValidationError }>('/users/register',
-    async (data, { rejectWithValue }) => {
-    try {
-        const formData = new FormData();
-
-        formData.append('username', data.username);
-        formData.append('password', data.password);
-        formData.append('displayName', data.displayName);
-        if (data.avatar) formData.append('avatar', data.avatar);
-
-        const response = await axiosAPI.post<RegisterResponse>('/users', formData);
-        toast.success(response.data.message);
-        return response.data.user;
-
-    } catch (e) {
-        if (isAxiosError(e) && e.response && e.response.status === 400) {
-            return rejectWithValue(e.response.data);
+export const register = createAsyncThunk<IUserFields, RegisterMutation, { rejectValue: ValidationError }>(
+    'users/register',
+    async (registerMutation, { rejectWithValue }) => {
+        try {
+            const response = await axiosAPI.post<RegisterResponse>('/users', registerMutation);
+            toast.success(response.data.message);
+            return response.data.user;
+        } catch (e) {
+            if (isAxiosError(e) && e.response && e.response.status === 400) {
+                return rejectWithValue(e.response.data);
+            }
+            throw e;
         }
-        throw e;
     }
-});
+);
 
 export const login = createAsyncThunk<IUserFields, LoginMutation, {rejectValue: GlobalError}>('/users/login',
     async (loginMutation, {rejectWithValue}) => {

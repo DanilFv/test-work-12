@@ -1,10 +1,9 @@
-import {Avatar, Box, Button, Menu, MenuItem} from '@mui/material';
+import {Box, Button, Menu, MenuItem} from '@mui/material';
 import type {IUserFields} from '../../../types';
 import {useState} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../../../app/hooks.ts';
 import {logout} from '../../../features/Users/store/usersThunks.ts';
-import {BASE_URL} from '../../../constants.ts';
 
 interface Props {
     user: IUserFields;
@@ -30,12 +29,8 @@ const UserMenu: React.FC<Props> = ({ user }) => {
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Button type='button' component={NavLink} to={`/cocktails/my-cocktails/${user._id}`} color='inherit'>
-                My cocktails
-            </Button>
-
-             <Button type='button' component={NavLink} to='/cocktails/add-cocktail' color='inherit'>
-                Add cocktail
+             <Button type='button' component={NavLink} to='/places/new' color='inherit'>
+                Add Place
             </Button>
 
             <Button
@@ -45,8 +40,6 @@ const UserMenu: React.FC<Props> = ({ user }) => {
             >
                 Hello {user.username}
             </Button>
-
-            <Avatar alt={user.username} src={`${BASE_URL}/${user.avatar}`} />
 
             <Menu
                 anchorEl={anchorEl}

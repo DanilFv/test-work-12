@@ -1,7 +1,7 @@
-export interface IUserFields{
+export interface IUserFields {
     _id: string;
     username: string;
-    role: string;
+    role: 'user' | 'admin';
 }
 
 export interface ValidationError {
@@ -23,16 +23,45 @@ export interface GlobalError {
 export interface RegisterMutation {
     username: string;
     password: string;
-    displayName: string;
-    avatar: string | null;
 }
 
-interface RegisterResponse {
-    message: string;
+export interface RegisterResponse {
     user: IUserFields;
+    message: string;
 }
 
-interface LoginMutation {
+export interface LoginMutation {
     username: string;
     password: string;
+}
+
+export interface IPlace {
+    _id: string;
+    title: string;
+    description: string;
+    mainImage: string | null;
+    overallRating: number;
+    reviewCount: number;
+    user: string;
+}
+
+export interface IReview {
+    _id: string;
+    user: {
+        _id: string;
+        username: string;
+    };
+    place: string;
+    comment: string;
+    ratingFood: number;
+    ratingService: number;
+    ratingInterior: number;
+    datetime: string;
+}
+
+export interface PlaceMutation {
+    title: string;
+    description: string;
+    mainImage: File | null;
+    agreement: boolean;
 }

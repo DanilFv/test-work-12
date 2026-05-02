@@ -18,7 +18,7 @@ const AppToolBar = () => {
                             component={NavLink} to='/'
                             sx={{ flexGrow: 1, textDecoration: 'none', color: 'white' }}
                         >
-                            Cocktails
+                            Places Critic
                         </Typography>
 
                         {user ? <UserMenu user={user} /> : <AnonymousMenu />}

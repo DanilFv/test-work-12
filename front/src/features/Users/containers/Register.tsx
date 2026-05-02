@@ -1,7 +1,7 @@
 import type {RegisterMutation} from '../../../types';
 import {useAppDispatch, useAppSelector} from '../../../app/hooks.ts';
 import {useNavigate} from 'react-router-dom';
-import {googleLogin, register} from '../store/usersThunks.ts';
+import {register} from '../store/usersThunks.ts';
 import RegisterForm from '../components/RegisterForm.tsx';
 import {
     selectRegisterError,
@@ -24,14 +24,9 @@ const Register = () => {
         }
     };
 
-     const onGoogleLogin = async (credential: string) => {
-        await dispatch(googleLogin(credential)).unwrap();
-        navigate('/');
-    };
-
     return (
         <div>
-            <RegisterForm onSubmit={onSubmitHandler} isLoading={isLoading} error={error} googleLoginHandler={onGoogleLogin} />
+            <RegisterForm onSubmit={onSubmitHandler} isLoading={isLoading} error={error} />
         </div>
     );
 };

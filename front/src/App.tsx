@@ -5,8 +5,14 @@ import {Container, Typography} from '@mui/material';
 import Register from './features/Users/containers/Register.tsx';
 import Login from './features/Users/containers/Login.tsx';
 import Places from './features/Places/containers/Places.tsx';
+import NewPlace from './features/Places/containers/NewPlace.tsx';
+import ProtectedRouter
+    from './components/UI/ProtectedRouter/ProtectedRouter.tsx';
+import {useAppSelector} from './app/hooks.ts';
+import {selectUser} from './features/Users/store/userSelectors.ts';
 
 const App = () => {
+    const user = useAppSelector(selectUser);
 
   return (
       <>
@@ -15,7 +21,14 @@ const App = () => {
               <Routes>
                   <Route path='/register' element={(<Register />)} />
                   <Route path='/login' element={(<Login />)} />
+
                   <Route path='/' element={(<Places />)} />
+                  <Route path='/places/new' element={(
+                      <ProtectedRouter isAllowed={!!user}>
+                          <NewPlace />
+                      </ProtectedRouter>
+                      )}
+                  />
 
                   <Route path="*" element={(<Typography variant='h5' component='h5' sx={{ textAlign: 'center', fontWeight: 'bold' }}>Not Found Page.</Typography>)} />
               </Routes>

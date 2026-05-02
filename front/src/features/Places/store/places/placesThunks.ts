@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import axiosAPI from '../../../axiosAPI.ts';
-import type {IPlace, PlaceMutation, ValidationError} from '../../../types';
+import axiosAPI from '../../../../axiosAPI.ts';
+import type {IPlace, PlaceMutation, ValidationError} from '../../../../types';
 import {isAxiosError} from 'axios';
 import {toast} from 'react-toastify';
 

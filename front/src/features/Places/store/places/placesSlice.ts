@@ -1,4 +1,4 @@
-import type {IPlace, ValidationError} from '../../../types';
+import type {IPlace, ValidationError} from '../../../../types';
 import {createSlice} from '@reduxjs/toolkit';
 import {
     createPlace,

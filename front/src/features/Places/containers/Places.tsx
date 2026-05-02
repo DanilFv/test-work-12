@@ -3,9 +3,9 @@ import {
     selectDeleteLoading,
     selectFetchLoading,
     selectPlaces
-} from '../store/placesSelectors.ts';
+} from '../store/places/placesSelectors.ts';
 import {useEffect} from 'react';
-import {deletePlace, fetchPlaces} from '../store/placesThunks.ts';
+import {deletePlace, fetchPlaces} from '../store/places/placesThunks.ts';
 import PlaceCard from '../components/PlaceCard/PlaceCard.tsx';
 import Spinner from '../../../components/UI/Spinner/Spinner.tsx';
 import {Typography} from '@mui/material';

@@ -46,6 +46,12 @@ export interface IPlace {
     imageCount: number;
 }
 
+export interface IPlaceImage {
+    _id: string;
+    image: string;
+    user: string;
+}
+
 export interface IReview {
     _id: string;
     user: {
@@ -58,6 +64,21 @@ export interface IReview {
     ratingService: number;
     ratingInterior: number;
     datetime: string;
+}
+
+export interface IPlaceFull extends IPlace {
+    reviews: IReview[];
+    gallery: IPlaceImage[];
+    averageFood: number;
+    averageService: number;
+    averageInterior: number;
+}
+
+export interface ReviewMutation {
+    comment: string;
+    ratingFood: number;
+    ratingService: number;
+    ratingInterior: number;
 }
 
 export interface PlaceMutation {

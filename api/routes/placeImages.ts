@@ -33,7 +33,10 @@ placeImagesRouter.post('/', auth, imagesUpload.single('image'), async (req, res,
         });
 
         await placeImage.save();
-        return res.send(placeImage);
+        return res.send({
+            message: 'Photo added successfully',
+            place: placeImage,
+        });
     } catch (e) {
         if (e instanceof mongoose.Error.ValidationError) {
             res.status(400).send(e);

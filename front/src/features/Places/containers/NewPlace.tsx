@@ -3,9 +3,9 @@ import {useAppDispatch, useAppSelector} from '../../../app/hooks.ts';
 import {
     selectCreateError,
     selectCreateLoading
-} from '../store/placesSelectors.ts';
+} from '../store/places/placesSelectors.ts';
 import type {PlaceMutation} from '../../../types';
-import {createPlace} from '../store/placesThunks.ts';
+import {createPlace} from '../store/places/placesThunks.ts';
 import {useNavigate} from 'react-router-dom';
 
 

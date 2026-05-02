@@ -1,4 +1,4 @@
-import type {RootState} from '../../../app/store.ts';
+import type {RootState} from '../../../../app/store.ts';
 
 export const selectPlaces = (state: RootState) => state.places.items;
 export const selectFetchLoading = (state: RootState) => state.places.fetchLoading;

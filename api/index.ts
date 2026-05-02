@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import usersRouter from './routes/users';
 import config from './config';
+import placeImagesRouter from './routes/placeImages';
+import placesRouter from './routes/places';
+import reviewsRouter from './routes/reviews';
 
 const app = express();
 const port = 8000;
@@ -17,6 +20,10 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use('/users', usersRouter);
+app.use('/places', placesRouter);
+app.use('/reviews', reviewsRouter);
+app.use('/place_images', placeImagesRouter);
+
 
 const run = async () => {
     await mongoose.connect(config.db);

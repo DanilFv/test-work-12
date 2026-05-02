@@ -76,7 +76,8 @@ const FullPlace = () => {
         if (id) {
             try {
                 await dispatch(addReview({ data, placeId: id }));
-                dispatch(fetchReviewsByPlace(id));
+                await dispatch(fetchReviewsByPlace(id));
+                dispatch(fetchOnePlace(id));
             } catch (e) {
                 console.error(e);
             }

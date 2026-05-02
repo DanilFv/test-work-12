@@ -8,3 +8,4 @@ export const selectFetchOneLoading = (state: RootState) => state.places.fetchOne
 
 export const selectCreateLoading = (state: RootState) => state.places.createLoading;
 export const selectCreateError = (state: RootState) => state.places.createError;
+export const selectDeleteLoading = (state: RootState) => state.places.deleteLoading;

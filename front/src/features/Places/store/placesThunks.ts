@@ -39,3 +39,11 @@ export const createPlace = createAsyncThunk<void, PlaceMutation, { rejectValue: 
         throw e;
     }
 });
+
+export const deletePlace = createAsyncThunk<void, string>(
+    'places/delete',
+    async (id) => {
+        const response = await axiosAPI.delete(`/places/${id}`);
+        toast.success(response.data.message);
+    }
+);

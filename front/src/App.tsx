@@ -4,6 +4,7 @@ import AppToolBar from './components/UI/AppToolBar/AppToolBar.tsx';
 import {Container, Typography} from '@mui/material';
 import Register from './features/Users/containers/Register.tsx';
 import Login from './features/Users/containers/Login.tsx';
+import Places from './features/Places/containers/Places.tsx';
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
               <Routes>
                   <Route path='/register' element={(<Register />)} />
                   <Route path='/login' element={(<Login />)} />
+                  <Route path='/' element={(<Places />)} />
 
                   <Route path="*" element={(<Typography variant='h5' component='h5' sx={{ textAlign: 'center', fontWeight: 'bold' }}>Not Found Page.</Typography>)} />
               </Routes>

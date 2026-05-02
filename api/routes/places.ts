@@ -5,6 +5,7 @@ import auth, {RequestWithUser} from '../middlewares/auth';
 import {imagesUpload} from '../middlewares/multer';
 import mongoose from 'mongoose';
 import permit from '../middlewares/permit';
+import PlaceImage from '../models/PlaceImage';
 
 const placesRouter = express.Router();
 
@@ -12,13 +13,22 @@ placesRouter.get('/', async (req, res, next) => {
     try {
         const places = await Place.find().lean();
         const reviews = await Review.find();
+        const allImages = await PlaceImage.find();
 
         const placesWithRatings = places.map(place => {
             const placeReviews = reviews.filter(r => r.place.toString() === place._id.toString());
+            const placeImagesCount = allImages.filter(img => img.place.toString() === place._id.toString()).length;
+
+            const totalImages = placeImagesCount + (place.mainImage ? 1 : 0);
             const count = placeReviews.length;
 
             if (count === 0) {
-                return {...place, overallRating: 0, reviewCount: 0}
+                return {
+                    ...place,
+                    overallRating: 0,
+                    reviewCount: 0,
+                    imageCount: totalImages,
+                }
             }
 
             const avgFood = placeReviews.reduce((sum, r) => sum + r.ratingFood, 0) / count;
@@ -31,6 +41,7 @@ placesRouter.get('/', async (req, res, next) => {
                 ...place,
                 overallRating: Number(overallRating.toFixed(1)),
                 reviewCount: count,
+                imageCount: totalImages,
             }
         });
 

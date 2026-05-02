@@ -1,6 +1,11 @@
 import type {IPlace, ValidationError} from '../../../types';
 import {createSlice} from '@reduxjs/toolkit';
-import {createPlace, fetchOnePlace, fetchPlaces} from './placesThunks.ts';
+import {
+    createPlace,
+    deletePlace,
+    fetchOnePlace,
+    fetchPlaces
+} from './placesThunks.ts';
 
 interface PlacesState {
     items: IPlace[];
@@ -9,6 +14,7 @@ interface PlacesState {
     fetchOneLoading: boolean;
     createLoading: boolean;
     createError: ValidationError | null;
+    deleteLoading: boolean;
 }
 
 const initialState: PlacesState = {
@@ -18,6 +24,7 @@ const initialState: PlacesState = {
     fetchOneLoading: false,
     createLoading: false,
     createError: null,
+    deleteLoading: false,
 }
 
 export const placesSlice = createSlice({
@@ -57,6 +64,16 @@ export const placesSlice = createSlice({
         builder.addCase(createPlace.rejected, (state, { payload }) => {
             state.createLoading = false;
             state.createError = payload || null;
+        });
+
+        builder.addCase(deletePlace.pending, (state) => {
+            state.createLoading = true;
+        });
+        builder.addCase(deletePlace.fulfilled, (state) => {
+            state.createLoading = false;
+        });
+        builder.addCase(deletePlace.rejected, (state) => {
+            state.createLoading = false;
         });
     })
 });

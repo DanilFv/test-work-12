@@ -43,6 +43,7 @@ export interface IPlace {
     overallRating: number;
     reviewCount: number;
     user: string;
+    imageCount: number;
 }
 
 export interface IReview {

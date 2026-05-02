@@ -1,4 +1,4 @@
-import {Schema} from 'mongoose';
+import mongoose, {Schema} from 'mongoose';
 import {ReviewFields} from '../types';
 
 const ReviewSchema = new Schema<ReviewFields>({
@@ -38,4 +38,7 @@ const ReviewSchema = new Schema<ReviewFields>({
         type: Date,
         default: Date.now,
     }
-})
+});
+
+const Review = mongoose.model<ReviewFields>('Review', ReviewSchema);
+export default Review;

@@ -22,7 +22,7 @@ app.use(express.static("public"));
 app.use('/users', usersRouter);
 app.use('/places', placesRouter);
 app.use('/reviews', reviewsRouter);
-app.use('/place_images', placeImagesRouter);
+app.use('/place-images', placeImagesRouter);
 
 
 const run = async () => {

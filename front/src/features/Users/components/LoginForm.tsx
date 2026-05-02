@@ -65,7 +65,7 @@ const LoginForm: React.FC<Props> = ({ onSubmit, thunkError, isLoading }) => {
                             />
                         </Grid>
                     </Grid>
-                    <Button type="submit" fullWidth variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2 }}>
+                    <Button type="submit" fullWidth variant="contained" disabled={isLoading} sx={{ mt: 3, mb: 2, bgcolor: '#000' }}>
                         {isLoading ? 'Signing in...' : 'Sign in'}
                     </Button>
                     <Grid container sx={{ display: 'flex', justifyContent: 'flex-end' }}>

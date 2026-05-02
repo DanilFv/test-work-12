@@ -102,7 +102,7 @@ const RegisterForm: React.FC<Props> = ({ onSubmit, error, isLoading }) => {
                         fullWidth
                         variant="contained"
                         disabled={isLoading}
-                        sx={{ mt: 3, mb: 2 }}
+                        sx={{ mt: 3, mb: 2, bgcolor: '#000' }}
                     >
                         Sign Up
                     </Button>

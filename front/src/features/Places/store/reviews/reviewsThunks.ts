@@ -23,7 +23,7 @@ export const fetchReviewsByPlace = createAsyncThunk<IReview[], string>(
     }
 );
 
-export const deleteReview = createAsyncThunk<void, { id: string }>('reviews/deleteReview',
+export const deleteReview = createAsyncThunk<void, string>('reviews/deleteReview',
     async (id) => {
     const response = await axiosAPI.delete(`/reviews/${id}`);
     toast.success(response.data.message);
